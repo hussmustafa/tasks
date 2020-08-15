@@ -1,0 +1,108 @@
+**reflection**
+ reflection is used to describe code which is able to inspect other code in the same system (or itself).
+
+if i have an object of an unknown type in Java, and you would like to call a 'doThing' method on it if one exists. Java's static typing system isn't really designed to support this unless the object conforms to a known interface, but using reflection, your code can look at the object and find out if it has a method called 'doThing' and then call it if i want to.
+
+ex :
+
+Method method = foo.getClass().getMethod("doSomething", null);
+method.invoke(foo, null);
+
+** DAO , DTO
+
+-------------------------------
+DAO is a class that usually has operations like save, update, delete. Whereas the DTO is just an object that holds data.
+
+The advantage of the DAO layer is that if i need to change the underlying persistence mechanism you only have to change the DAO layer, and not all the places in the domain logic where the DAO layer is used from.
+
+The advantage of DTO layer is that it adds a good deal of flexibility to the service layer and subsequently to the design of the entire application
+
+***Loose coupling implementation via DI and IoC ***
+can be used as a technique for encouraging this loose coupling. There are two primary approaches to implementing DI, constructor injection and setter injection. Obviously, at some point, something must be responsible for creating the concrete objects that will be injected into another object. The injector can be a parent object, which I'll call the "DI controller", or can be externalized and handled by a "DI container" .
+
+*** AOP ***
+
+Most of the enterprise applications have some common crosscutting concerns that are applicable to different types of Objects and modules. Some of the common crosscutting concerns are logging, transaction management, data validation, etc.
+In Object Oriented Programming, modularity of application is achieved by Classes whereas in Aspect Oriented Programming application modularity is achieved by Aspects and they are configured to cut across different classes.
+Spring AOP takes out the direct dependency of crosscutting tasks from classes that we can’t achieve through normal object oriented programming model. For example, i can have a separate class for logging but again the functional classes will have to call these methods to achieve logging across the application. 
+
+*** Logging ***
+
+which gives me this information :
+Date and Time that gives the date and time of the log
+Log level shows INFO, ERROR or WARN
+Process ID
+The which is a separator
+Thread name is enclosed within the square brackets []
+Logger Name that shows the Source class name
+The Log message
+
+***JMS***
+is a Java Message Oriented Middleware used to send messages between clients and works by sending messages to a message queue which are then taken when possible to execute a transaction
+
+***OXM**
+Within the field of O/X mapping, a marshaller is responsible for serializing an object (graph) to XML. In similar fashion, an unmarshaller deserializes the XML to an object graph. This XML can take the form of a DOM document, an input or output stream, or a SAX handler.
+
+EX :
+public interface Marshaller {
+
+    void marshal(Object graph, Result result)
+        throws XmlMappingException, IOException;
+}
+
+public interface Unmarshaller {
+
+    
+    Object unmarshal(Source source)
+        throws XmlMappingException, IOException;
+}
+
+public class Settings {
+    private boolean fooEnabled;
+
+    public boolean isFooEnabled() {
+        return fooEnabled;
+    }
+
+    public void setFooEnabled(boolean fooEnabled) {
+        this.fooEnabled = fooEnabled;
+    }
+}
+
+
+
+***JMX***
+
+is the java Management Extensions (JMX) provide a standard mechanism to monitor and manage applications. By default Spring Boot will expose management endpoints as JMX MBeans under the org.springframework.boot domain
+
+***Unit Test***
+Unit Testing is a one of the testing done by the developer to make sure individual unit or component functionalities are working fine.
+
+using Mockito and Junit
+
+***Stub***
+EX : 
+@Autowired
+    MyService myservice
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        myservice.callMethod();
+    }
+
+
+***Servlet***
+
+Servlet mapping can be achieved either by using ServletRegistrationBean or by using @ServletComponentScan annotation in Spring Boot. ServletRegistrationBean registers Servlet as Spring bean. @ServletComponentScan scans Servlet annotated with @WebServlet. The annotation @ServletComponentScan works only using embedded server in Spring Boot. Here on this page we will create two Servlets and one Spring Controller class.
+
+***EndPoint***
+
+The actuator endpoints allows me to monitor and interact with the application, Spring Boot provides a number of built-in endpoints, We can also create our own endpoint, We can enable and disable each endpoint individually, Most of the application choose HTTP, where the Id of the endpoint, along with the prefix of /actuator, is mapped to a URL.
+
+For example, the /health endpoint provides the basic health information of an application. The actuator, by default, mapped it to /actuator/health.  
+
+
+** thats notes to save basic Topic to rembmer it for future **
+
+
+
+
